@@ -3,14 +3,6 @@ Eyring Equation Landscape: Activation Energy vs Reaction Half-Life
 
 A wall-worthy visualization showing the relationship between activation free energy
 and reaction half-life across different temperatures, based on transition state theory.
-
-Author: Generated via Claude (Anthropic)
-Date: October 18, 2025
-License: CC0 1.0 Universal (Public Domain)
-Repository: github.com/your-repo/eyring-landscape
-
-Inspired by Edward Tufte's principles of analytical design and
-the classical physics plotting tradition.
 """
 
 import numpy as np
@@ -290,13 +282,5 @@ plt.savefig('eyring_landscape.pdf', dpi=300,# bbox_inches='tight',
             facecolor='white', edgecolor='none')
 plt.savefig('eyring_landscape.png', dpi=300,# bbox_inches='tight',
             facecolor='white', edgecolor='none')
-
-print("Plot generated successfully!")
-print("Files saved: eyring_landscape.pdf, eyring_landscape.png")
-print("\nPlot features:")
-print(f"  • Temperature range: {temps_C[0]}°C to {temps_C[-1]}°C")
-print(f"  • Energy range: 0 to {dG_kJ[-1]:.0f} kJ/mol")
-print(f"  • Half-life range: 1 μs to 30,000 years")
-print(f"  • Number of isotherms: {len(temps_C)}")
 
 # plt.show()
