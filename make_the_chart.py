@@ -65,7 +65,7 @@ dG_J = dG_kJ * KJ_TO_J
 # Temperature range
 temps_C = np.arange(-270, 301, 10)
 # extend from 300 to 1000 at every 50 degrees
-temps_C = np.concatenate((temps_C, np.arange(300, 1001, 50)))
+temps_C = np.concatenate((temps_C, np.arange(300, 1001, 10)))
 temps_K = temps_C + 273.15
 
 # Dictionary for temperature label positions (temperature: x-position in kJ/mol)
@@ -98,7 +98,7 @@ for temp in np.arange(400, 1001, 100):
     temp_label_positions[temp] = right_pos
 
 temp_label_positions[140] = 175
-temp_label_positions[1000] = 195
+temp_label_positions[1000] = 196
 
 # Plot Eyring lines for each temperature
 for i, (T_C, T_K) in enumerate(zip(temps_C, temps_K)):
@@ -106,15 +106,23 @@ for i, (T_C, T_K) in enumerate(zip(temps_C, temps_K)):
     t_half = rate_to_halflife(k)
 
     # Make lines slightly thicker for labeled temperatures
-    if T_C == 20:
-        linewidth = 1.5
-        alpha = 1
-    elif T_C % 20 == 0:
-        linewidth = 0.9
-        alpha = 0.8
+    if T_C < 300:
+        if T_C == 20:
+            linewidth = 1.5
+            alpha = 1
+        elif T_C % 20 == 0:
+            linewidth = 0.9
+            alpha = 0.8
+        else:
+            linewidth = 0.5
+            alpha = 0.6
     else:
-        linewidth = 0.5
-        alpha = 0.6
+        if T_C % 100 == 0:
+            linewidth = 0.9
+            alpha = 0.8
+        else:
+            linewidth = 0.5
+            alpha = 0.6
 
     host.plot(dG_kJ, t_half, color='black', linewidth=linewidth,
               alpha=alpha, zorder=2)
